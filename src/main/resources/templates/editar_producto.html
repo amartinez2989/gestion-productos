@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Registro de productos</title>
+    <title>Editar producto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
@@ -28,6 +28,10 @@
             <h1 class="text-center">Registro de producto</h1>
             <div class="card-body">
                 <form th:action="@{/guardar}" th:object="${producto}" method="post">
+                    <div class="form-group">
+                        <label class="form-label">Producto ID :</label>
+                        <input type="text" name="id" th:field="*{id}" class="form-control" readonly="readonly">
+                    </div>
                     <div class="form-group">
                         <label class="form-label">Nombre :</label>
                         <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Digite el nombre del producto" required>

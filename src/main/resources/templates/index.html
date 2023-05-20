@@ -41,9 +41,12 @@
         <th th:text="${producto.marca}"></th>
         <th th:text="${producto.hechoEn}"></th>
         <th th:text="${producto.precio}"></th>
-        <td></td>
+        <td>
+            <a class="btn btn-primary" th:href="@{'/editar/' + ${producto.id}}">Editar</a>
+        </td>
     </tr>
     </tbody>
 </table>
+</div>
 </body>
 </html>
