@@ -13,7 +13,10 @@ public class ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
-    public List<Producto> listAll(){
+    public List<Producto> listAll(String palabraClave){
+        if (palabraClave != null){
+            return productoRepository.findAll(palabraClave);
+        }
         return productoRepository.findAll();
     }
 

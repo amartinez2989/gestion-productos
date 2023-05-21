@@ -3,6 +3,7 @@ package com.gestion.productos.controller;
 import com.gestion.productos.entity.Producto;
 import com.gestion.productos.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +21,11 @@ public class ProductoController {
     private ProductoService productoService;
 
     @RequestMapping("/")
-    public String verPaginaDeInicio(Model modelo){
-        List<Producto> listaProductos = productoService.listAll();
+    public String verPaginaDeInicio(Model modelo, @Param("palabraClave") String palabraClave){
+        List<Producto> listaProductos = productoService.listAll(palabraClave);
+
         modelo.addAttribute("listaProductos", listaProductos);
+        modelo.addAttribute("palabraclave", palabraClave);
         return "index";
     }
 
@@ -46,5 +49,11 @@ public class ProductoController {
         Producto producto = productoService.get(id);
         modelo.addObject("producto", producto);
         return modelo;
+    }
+
+    @RequestMapping("/eliminar/{id}")
+    public String eliminarProducto(@PathVariable(name = "id") Long id){
+        productoService.delete(id);
+        return "redirect:/";
     }
 }
