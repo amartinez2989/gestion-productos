@@ -20,7 +20,7 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
-    @RequestMapping("/")
+    @RequestMapping("/productos")
     public String verPaginaDeInicio(Model modelo, @Param("palabraClave") String palabraClave){
         List<Producto> listaProductos = productoService.listAll(palabraClave);
 
@@ -29,20 +29,20 @@ public class ProductoController {
         return "index";
     }
 
-    @RequestMapping("/nuevo")
+    @RequestMapping("/productos/nuevo")
     public String mostrarFormularioDeRegistrarProducto(Model modelo){
         Producto unProducto = new Producto();
         modelo.addAttribute("producto",unProducto);
         return "nuevo_producto";
     }
 
-    @RequestMapping(value = "/guardar" , method = RequestMethod.POST)
+    @RequestMapping(value = "/productos/guardar" , method = RequestMethod.POST)
     public String guardarProducto(@ModelAttribute ("producto") Producto producto){
         productoService.save(producto);
         return "redirect:/";
     }
 
-    @RequestMapping("/editar/{id}")
+    @RequestMapping("/productos/editar/{id}")
     public ModelAndView mostrarFormularioDeEditarProducto(@PathVariable(name = "id") Long id){
         ModelAndView modelo = new ModelAndView("editar_producto");
 
@@ -51,7 +51,7 @@ public class ProductoController {
         return modelo;
     }
 
-    @RequestMapping("/eliminar/{id}")
+    @RequestMapping("/productos/eliminar/{id}")
     public String eliminarProducto(@PathVariable(name = "id") Long id){
         productoService.delete(id);
         return "redirect:/";

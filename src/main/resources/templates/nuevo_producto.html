@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/nuevo">Agregar producto</a>
+                    <a class="nav-link" href="/productos/nuevo">Agregar producto</a>
                 </li>
             </ul>
         </div>
@@ -27,7 +27,7 @@
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class="text-center">Registro de producto</h1>
             <div class="card-body">
-                <form th:action="@{/guardar}" th:object="${producto}" method="post">
+                <form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
                     <div class="form-group">
                         <label class="form-label">Nombre :</label>
                         <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Digite el nombre del producto" required>
