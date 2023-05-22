@@ -1,16 +1,14 @@
 package com.gestion.productos.controller;
 
-import com.gestion.productos.entity.Categoria;
+import com.gestion.productos.entity.Marca;
 import com.gestion.productos.entity.Producto;
-import com.gestion.productos.repositories.CategoriaRepository;
-import com.gestion.productos.services.CategoriaService;
+import com.gestion.productos.services.MarcaService;
 import com.gestion.productos.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class ProductoController {
     private ProductoService productoService;
 
     @Autowired
-    private CategoriaService categoriaService;
+    private MarcaService marcaService;
 
     @RequestMapping("/productos")
     public String verPaginaDeInicio(Model modelo, @Param("palabraClave") String palabraClave){
@@ -34,9 +32,9 @@ public class ProductoController {
 
     @GetMapping("/productos/nuevo")
     public String mostrarFormularioDeRegistrarProducto(Model modelo){
-        List<Categoria> listaCategorias = categoriaService.listAll();
+        List<Marca> listaMarcas = marcaService.listAll();
         Producto unProducto = new Producto();
-        modelo.addAttribute("listaCategorias", listaCategorias);
+        modelo.addAttribute("listaMarcas", listaMarcas);
         modelo.addAttribute("producto",unProducto);
         return "formulario_producto";
     }
@@ -49,11 +47,11 @@ public class ProductoController {
 
     @GetMapping("/productos/editar/{id}")
     public String mostrarFormularioDeEditarProducto(@PathVariable(name = "id") Long id, Model modelo){
-        List<Categoria> listaCategorias = categoriaService.listAll();
+        List<Marca> listaMarcas = marcaService.listAll();
 
         Producto producto = productoService.get(id);
         modelo.addAttribute("producto", producto);
-        modelo.addAttribute("listaCategorias", listaCategorias);
+        modelo.addAttribute("listaMarcas", listaMarcas);
         return "formulario_producto";
     }
 

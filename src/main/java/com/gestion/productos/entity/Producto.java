@@ -2,6 +2,8 @@ package com.gestion.productos.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Producto {
     @Id
@@ -12,28 +14,24 @@ public class Producto {
     private String nombre;
 
     @Column(nullable = false, length = 60)
-    private String marca;
-
-    @Column(nullable = false, length = 60)
     private String hechoEn;
 
     @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
+    @JoinColumn(name = "marca_id")
+    private Marca marca;
 
     @Column(nullable = false)
     private float precio;
 
-    public Producto(long id, String nombre, String marca, String hechoEn, Categoria categoria, float precio) {
-        this.id = id;
-        this.nombre = nombre;
-        this.marca = marca;
-        this.hechoEn = hechoEn;
-        this.categoria = categoria;
-        this.precio = precio;
+    public Producto() {
     }
 
-    public Producto() {
+    public Producto(long id, String nombre, String hechoEn, Marca marca, float precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.hechoEn = hechoEn;
+        this.marca = marca;
+        this.precio = precio;
     }
 
     public long getId() {
@@ -52,14 +50,6 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
     public String getHechoEn() {
         return hechoEn;
     }
@@ -76,11 +66,11 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public Marca getMarca() {
+        return marca;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 }

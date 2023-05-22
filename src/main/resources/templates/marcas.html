@@ -24,15 +24,24 @@
                         <li><a class="dropdown-item" th:href="@{/productos/nuevo}">Agregar producto</a></li>
                     </ul>
                 </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategoria" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Categorías
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" th:href="@{/categorias}">Listar categorias</a></li>
-                    <li><a class="dropdown-item" th:href="@{/categorias/nuevo}">Agregar categorías</a></li>
-                </ul>
-            </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategoria" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Modelos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="@{/modelos}">Listar modelos</a></li>
+                        <li><a class="dropdown-item" th:href="@{/modelos/nuevo}">Agregar modelo</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMarca" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Marcas
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="@{/marcas}">Listar marcas</a></li>
+                        <li><a class="dropdown-item" th:href="@{/marcas/nuevo}">Agregar marcas</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -57,16 +66,18 @@
     <tr>
         <th scope="col">Id</th>
         <th scope="col">Nombre</th>
+        <th scope="col">Modelos</th>
         <th scope="col">Acciones</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="categoria : ${listaCategorias}">
-        <th th:text="${categoria.id}"></th>
-        <th th:text="${categoria.nombre}"></th>
+    <tr th:each="marca : ${listaMarcas}">
+        <th th:text="${marca.id}"></th>
+        <th th:text="${marca.nombre}"></th>
+        <th th:text="${marca.modelos}"></th>
         <td>
-            <a class="btn btn-primary" th:href="@{'/categorias/editar/' + ${categoria.id}}">Editar</a>
-            <a class="btn btn-danger" th:href="@{'/categorias/eliminar/' + ${categoria.id}}">Eliminar</a>
+            <a class="btn btn-primary" th:href="@{'/marcas/editar/' + ${marca.id}}">Editar</a>
+            <a class="btn btn-danger" th:href="@{'/marcas/eliminar/' + ${marca.id}}">Eliminar</a>
 
         </td>
     </tr>
