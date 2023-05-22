@@ -17,14 +17,19 @@ public class Producto {
     @Column(nullable = false, length = 60)
     private String hechoEn;
 
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
     @Column(nullable = false)
     private float precio;
 
-    public Producto(long id, String nombre, String marca, String hechoEn, float precio) {
+    public Producto(long id, String nombre, String marca, String hechoEn, Categoria categoria, float precio) {
         this.id = id;
         this.nombre = nombre;
         this.marca = marca;
         this.hechoEn = hechoEn;
+        this.categoria = categoria;
         this.precio = precio;
     }
 
@@ -69,5 +74,13 @@ public class Producto {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
