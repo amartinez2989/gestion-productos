@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MarcaService {
@@ -21,12 +22,12 @@ public class MarcaService {
         marcaRepository.save(marca);
     }
 
-    public Marca get(Long id){
-        return marcaRepository.findById(id).get();
-    }
 
     public void delete(Long id){
         marcaRepository.deleteById(id);
     }
 
+    public Marca get(Long id){
+        return marcaRepository.findById(id).get();
+    }
 }

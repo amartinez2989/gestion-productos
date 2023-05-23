@@ -1,5 +1,6 @@
 package com.gestion.productos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,8 +19,13 @@ public class Producto {
 
     @ManyToOne
     @JoinColumn(name = "marca_id")
+    @JsonIgnore
     private Marca marca;
 
+    @ManyToOne
+    @JoinColumn(name = "modelo_id")
+    @JsonIgnore
+    private Modelo modelo;
     @Column(nullable = false)
     private float precio;
 
@@ -72,5 +78,13 @@ public class Producto {
 
     public void setMarca(Marca marca) {
         this.marca = marca;
+    }
+
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo;
     }
 }

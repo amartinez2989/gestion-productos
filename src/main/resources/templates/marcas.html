@@ -49,18 +49,6 @@
 
 <br>
 <div class="container text-center">
-    <form class="d-flex" th:action="@{/}">
-        <div class="form-group mb-2">
-            <label>Filtrar</label>
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <input type="text" name="palabraClave" class="form-control" id="palabraClave" th:value="${palabraClave}" placeholder="Digite el valor a buscar">
-        </div>
-            <input type="submit" class="btn btn-info mb-2" value="Buscar">
-            &nbsp;&nbsp;
-            <input type="button" class="btn btn-secondary mb-2" value="Limpiar" onclick="limpiarCampos()">
-    </form>
-    <br>
 <table class="table">
     <thead class="thead-dark">
     <tr>

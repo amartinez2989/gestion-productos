@@ -60,6 +60,10 @@
                         <label class="form-label">Nombre :</label>
                         <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Digite el nombre de la marca" required>
                     </div>
+                    <h2>Modelos de la marca: <span th:text="${marca.nombre}"></span></h2>
+                    <ul>
+                        <li th:each="modelo : ${marca.modelos}" th:text="${modelo.nombre}"></li>
+                    </ul>
                     <br>
                     <div class="box-footer">
                         <button class="btn btn-success">Guardar</button>

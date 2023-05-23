@@ -14,31 +14,21 @@ public class Marca {
     @Column(nullable = false, length = 60)
     private String nombre;
 
-    @OneToMany(mappedBy = "marca")
+    @OneToMany(mappedBy = "marca", cascade={CascadeType.REMOVE}, orphanRemoval=false)
     private List<Producto> productos;
 
-    @OneToMany(mappedBy = "marca")
+    @OneToMany(mappedBy = "marca", cascade={CascadeType.REMOVE}, orphanRemoval=false)
     private List<Modelo> modelos= new ArrayList<>();
 
     public Marca() {
     }
 
-    public long getId() {
+    // Getters y Setters
+    public Long getId() {
         return id;
     }
 
-    public Marca(long id, String nombre, List<Producto> productos, List<Modelo> modelos) {
-        this.id = id;
-        this.nombre = nombre;
-        this.productos = productos;
-        this.modelos = modelos;
-    }
-
-    public Marca(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -58,16 +48,18 @@ public class Marca {
         this.modelos = modelos;
     }
 
+    public void agregarModelo(Modelo modelo) {
+        modelos.add(modelo);
+        modelo.setMarca(this);
+    }
+
+    public void eliminarModelo(Modelo modelo) {
+        modelos.remove(modelo);
+        modelo.setMarca(null);
+    }
+
     @Override
     public String toString() {
         return nombre;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
     }
 }

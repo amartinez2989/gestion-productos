@@ -1,5 +1,6 @@
 package com.gestion.productos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,8 +14,12 @@ public class Modelo {
 
     @ManyToOne
     @JoinColumn(name = "marca_id")
+    @JsonIgnore
     private Marca marca;
 
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
     public long getId() {
         return id;
     }
@@ -50,6 +55,14 @@ public class Modelo {
         this.id = id;
         this.nombre = nombre;
         this.marca = marca;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     @Override

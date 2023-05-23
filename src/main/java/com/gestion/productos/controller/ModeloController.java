@@ -30,11 +30,12 @@ public class ModeloController {
         return "modelos";
     }
     @GetMapping("/modelos/nuevo")
-    public String mostrarFormularioDeRegistrarMarcas(Model modelo1){
-        List<Marca> listaMarcas = marcaService.listAll();
+    public String mostrarFormularioDeRegistrarMarcas(Model model){
         Modelo modelo = new Modelo();
-        modelo1.addAttribute("listaMarcas", listaMarcas);
-        modelo1.addAttribute("modelo",modelo);
+        List<Marca> listaMarcas = marcaService.listAll();
+
+        model.addAttribute("listaMarcas", listaMarcas);
+        model.addAttribute("modelo",modelo);
         return "formulario_modelo";
     }
 
@@ -45,7 +46,7 @@ public class ModeloController {
     }
 
     @GetMapping("/modelos/editar/{id}")
-    public String mostrarFormularioDeEditarModelos(@PathVariable(name = "id") Integer id, Model modelo1){
+    public String mostrarFormularioDeEditarModelos(@PathVariable(name = "id") Long id, Model modelo1){
         List<Marca> listaMarcas = marcaService.listAll();
 
         Modelo modelo = modeloService.get(id);
@@ -55,7 +56,7 @@ public class ModeloController {
     }
 
     @RequestMapping("/modelos/eliminar/{id}")
-    public String eliminarModelos(@PathVariable(name = "id") Integer id){
+    public String eliminarModelos(@PathVariable(name = "id") Long id){
         modeloService.delete(id);
         return "redirect:/modelos";
     }
